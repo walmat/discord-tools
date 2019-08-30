@@ -1,5 +1,6 @@
 // Load up the discord.js library
 const Discord = require("discord.js");
+require('dotenv').config();
 
 const { calculateFee } = require('./feeCalc');
 
