@@ -49,17 +49,20 @@ client.on("message", async message => {
     // args = ["Is", "this", "the", "real", "life?"]
     const args = message.content.slice(PREFIX).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
-    
-    // Let's go with a few common example commands! Feel free to delete or change those.
-    if(command === "fee") {
 
+    console.log(command, `${PREFIX}fee`, command === `${PREFIX}fee`);
+
+    // Let's go with a few common example commands! Feel free to delete or change those.
+    if (command === `${PREFIX}fee`) {
+
+        console.log(args.length);
         // boundary check here for wrong number of args
-        if (args.length !== 2) {
+        if (args.length !== 1) {
             // you can send an error message back if you want..
             return;
         }
 
-        const [, rawAmount] = args;
+        const [rawAmount] = args;
 
         const amount = parseFloat(rawAmount);
         
@@ -74,13 +77,17 @@ client.on("message", async message => {
             ebayFees,
             paypalFees,
             grailedFees,
-        } = calculateFee(amount);
+        } = await calculateFee(amount);
 
 
         // build your embed here...
+        const embed = new Discord.RichEmbed().addField('StockX', stockxFees[1]);
+
+        return message.channel.send(embed);
+        
     }
 
-    if (command === 'tallas') {
+    if (command === `${PREFIX}tallas`) {
         
         // boundary check here for wrong number of args
         if (args.length !== 2) {
