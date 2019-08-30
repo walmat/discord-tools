@@ -46,7 +46,7 @@ client.on("message", async message => {
     // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
     // command = say
     // args = ["Is", "this", "the", "real", "life?"]
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const args = message.content.slice(PREFIX).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     
     // Let's go with a few common example commands! Feel free to delete or change those.
@@ -73,7 +73,7 @@ client.on("message", async message => {
             ebayFees,
             paypalFees,
             grailedFees,
-        } = calculateFee(aount);
+        } = calculateFee(amount);
 
 
         // build your embed here...
